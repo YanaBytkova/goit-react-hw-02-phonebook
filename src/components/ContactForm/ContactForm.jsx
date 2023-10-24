@@ -6,19 +6,20 @@ import css from './ContactForm.module.css';
 export class ContactForm extends Component {
     state = {
         contacts: [],
-        // filter: '',
         name: '',
-        // number: ''
+        number: ''
       }
 
   handleSubmit = event => {
     event.preventDefault();
-
+    const form = event.currentTarget;
     const contactData = {
       name: this.state.name,
+      number: this.state.number
     };
-    console.log("contactData", contactData);
+    
     this.props.handleAddProduct(contactData);
+    form.reset();
   };
 
   handleInputChange = event => {
@@ -40,6 +41,10 @@ export class ContactForm extends Component {
           <p className={css.labelText}>Name</p>
           <input type="text" name="name" required onChange={this.handleInputChange}/>
         </label>
+        <label className={css.formLabel}>
+          <p className={css.labelText}>Number</p>
+          <input type="tel" name="number" required onChange={this.handleInputChange}/>
+        </label> <br />
         <button type="submit">Add contact</button>
       </form>
     );
