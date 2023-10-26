@@ -11,14 +11,11 @@ export class Filtering extends Component {
 
 handleInputFilter = event => {
     const value = event.target.value;
-    console.log("filter", value);
     
     this.setState({ filter: value });
     const filterInput = value;
     console.log("filter input", filterInput);
-    this.props.filterContacts(filterInput);
-    // const filterInput = value;
-    
+    this.props.getFilteredContacts(filterInput);
     
   };
   

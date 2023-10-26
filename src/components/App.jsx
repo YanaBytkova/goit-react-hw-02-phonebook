@@ -8,22 +8,10 @@ export class App extends Component {
   state = {
         contacts: [],
         filter: '',
-        // name: '',
-        // number: ''
+  
       }
       
-//   state = {
-//     products: productsData,
-//   };
 
-//   handleDeleteProduct = productId => {
-//     // "3"
-//     // [{id: "1"}, {id: "2"}, {id: "3"}]
-//     // [{id: "1"}, {id: "2"}]
-//     this.setState({
-//       products: this.state.products.filter(product => product.id !== productId),
-//     });
-//   };
 handleAddProduct = contactData => {
       const isExist = this.state.contacts.some(
         contact => contact.name === contactData.name
@@ -38,57 +26,53 @@ handleAddProduct = contactData => {
         ...contactData,
         id: nanoid(),
       };
-      console.log(finalNames);
+
       this.setState(prevState => ({
         contacts: [...prevState.contacts, finalNames],
       }));
   
     };
 
-    // handleDeleteProduct = productId => {
-    //   // "3"
-    //   // [{id: "1"}, {id: "2"}, {id: "3"}]
-    //   // [{id: "1"}, {id: "2"}]
-    //   this.setState(prevState => ({
-    //     contacts: prevState.contacts.filter(
-    //       contact => contact.id!== productId
-    //     ),
-    //   }));
-    // };
-    // handleInputFilter = event => {
-    //   const value = event.target.value;
-    //   console.log("filter", value);
+    handleDeleteContacts = contactId => {
       
-    //   this.setState({ filter: value });
-    //   const filterInput = this.state.filter;
-    //   this.props.handleFilterContacts(filterInput);
-    //   // const filterInput = value;
-      
-      
-    // };
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(
+          contact => contact.id!== contactId
+        ),
+      }));
+    };
+    
+  
      
   getFilteredContacts = (filterInput) => {
     const filter = filterInput;
-    const  contacts = this.state.contacts;
-    console.log("allContacts", contacts);
-    console.log("filterContacts", contacts, "filter",filter);
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    
+    // this.setState(prevState => ({
+    //   filter: [prevState.filter + filterInput]
+    // }));
+    // this.setState({ filter: filterInput });
+    const contacts = this.state.contacts;
+    // const filter = this.state.filter;
+    // console.log("Contacts", contacts, "filter",filter);
+    if (filter) {
+      return contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      );
+    }
+       
+   
   }
   
   render() {
- 
+
+    const filteredContacts =  this.getFilteredContacts();
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm handleAddProduct={this.handleAddProduct}/>
         <h2>Contacts</h2>
         
-          <Filtering contacts={this.filterContacts} filterContacts={this.filterContacts}/>
-
-       <ContactList contacts={this.getFilteredContacts} />
+        <Filtering getFilteredContacts={this.getFilteredContacts} />
+        {filteredContacts? (<ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>) : (<ContactList contacts={this.state.contacts} handleDeleteContacts={this.handleDeleteContacts}/>) }
      </div>
     );
   }
