@@ -67,34 +67,19 @@ handleAddProduct = contactData => {
       
     // };
      
-  filterContacts = (filterInput) => {
-    // const filter =  this.setState(({
-    //   filter: filterInput,
-    // }));
+  getFilteredContacts = (filterInput) => {
     const filter = filterInput;
-    this.setState(
-      // {contacts: newContact,
-      {filter: filterInput},
-    );
     const  contacts = this.state.contacts;
     console.log("allContacts", contacts);
     console.log("filterContacts", contacts, "filter",filter);
-    const newContact = contacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
-    console.log("newC", newContact);
-    // this.setState(
-    //   {contacts: newContact},
-    // );
-    return newContact;
     
   }
   
-    
   render() {
-      // const contacts = this.state;
-      // const filteredContacts = this.filterContacts;
-      console.log(this.filterContacts);
+ 
     return (
       <div>
         <h1>Phonebook</h1>
@@ -103,7 +88,7 @@ handleAddProduct = contactData => {
         
           <Filtering contacts={this.filterContacts} filterContacts={this.filterContacts}/>
 
-       <ContactList contacts={this.state.contacts} />
+       <ContactList contacts={this.getFilteredContacts} />
      </div>
     );
   }
