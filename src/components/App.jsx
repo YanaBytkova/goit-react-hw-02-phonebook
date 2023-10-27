@@ -73,7 +73,7 @@ handleAddProduct = contactData => {
         
         <Filtering getFilteredContacts={this.getFilteredContacts} />
         {/* {filteredContacts ? (<ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>) : (<ContactList contacts={this.state.contacts} handleDeleteContacts={this.handleDeleteContacts}/>) } */}
-        <ContactList contacts={this.filteredContacts()} handleDeleteContacts={this.handleDeleteContacts}/>
+        <ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>
      </div>
     );
   }
