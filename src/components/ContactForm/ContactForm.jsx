@@ -45,7 +45,7 @@ export class ContactForm extends Component {
           <p className={css.labelText}>Number</p>
           <input type="tel" name="number" required onChange={this.handleInputChange}/>
         </label> <br />
-        <button type="submit">Add contact</button>
+        <button className={css.button} type="submit">Add contact</button>
       </form>
     );
   }

@@ -1,17 +1,17 @@
+
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Filtering } from 'components/Filtering/Filtering';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
+import css from './App.module.css';
 
 export class App extends Component {
   state = {
         contacts: [],
         filter: '',
-  
       }
       
-
 handleAddProduct = contactData => {
       const isExist = this.state.contacts.some(
         contact => contact.name === contactData.name
@@ -42,39 +42,34 @@ handleAddProduct = contactData => {
       }));
     };
     
-  
+    setFilter=(value)=>{
+      this.setState({filter: value});
+    }
      
-  getFilteredContacts = (filterInput) => {
-    const filter = filterInput;
-    // this.setState(prevState => ({
-    //   filter: [prevState.filter + filterInput]
-    // }));
-    // this.setState({ filter: filterInput });
+  getFilteredContacts = () => {
+    const filter = this.state.filter;
     const contacts = this.state.contacts;
-    // const filter = this.state.filter;
-    // console.log("Contacts", contacts, "filter",filter);
     if (filter) {
       return contacts.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
       );
-    }
-       
-   
+    } 
+    return contacts
   }
+
+  
   
   render() {
-
     const filteredContacts =  this.getFilteredContacts();
     return (
-      <div>
+      <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm handleAddProduct={this.handleAddProduct}/>
         <h2>Contacts</h2>
-        
-        <Filtering getFilteredContacts={this.getFilteredContacts} />
-        {/* {filteredContacts ? (<ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>) : (<ContactList contacts={this.state.contacts} handleDeleteContacts={this.handleDeleteContacts}/>) } */}
-        <ContactList contacts={this.filteredContacts()} handleDeleteContacts={this.handleDeleteContacts}/>
+        <Filtering  filter={this.state.filter} setFilter={this.setFilter} />
+        <ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>
      </div>
     );
   }
 }
+

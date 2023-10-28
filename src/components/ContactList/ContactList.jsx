@@ -10,9 +10,9 @@ export const ContactList = ({ contacts, handleDeleteContacts }) => (
         <ul className={css.list}>
           {contacts.map(contact => (
             <li key={contact.id} className={css.item}>
-              <span className={css.name}>{contact.name}:</span>
+              <span className={css.name}>{contact.name}</span>
               <span className={css.number}>{contact.number}</span>
-              <button onClick={() => handleDeleteContacts(contact.id)}
+              <button className={css.button} onClick={() => handleDeleteContacts(contact.id)}
                 type="button">Delete</button>
             </li>
           ))}
