@@ -66,13 +66,11 @@ handleAddProduct = contactData => {
 
     const filteredContacts =  this.getFilteredContacts();
     return (
-      <div>
+     <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm handleAddProduct={this.handleAddProduct}/>
         <h2>Contacts</h2>
-        
-        <Filtering getFilteredContacts={this.getFilteredContacts} />
-        {/* {filteredContacts ? (<ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>) : (<ContactList contacts={this.state.contacts} handleDeleteContacts={this.handleDeleteContacts}/>) } */}
+        <Filtering  filter={this.state.filter} setFilter={this.setFilter} />
         <ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>
      </div>
     );
