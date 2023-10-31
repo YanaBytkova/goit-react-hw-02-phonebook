@@ -1,11 +1,4 @@
-.item {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
-}
+
 
 .list {
     border: 1px dashed black;
@@ -13,11 +6,7 @@
     padding: 8px;
 }
 
-.name,
-.number {
-    font-size: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+
 
 .button {
     border: 1px solid blue;

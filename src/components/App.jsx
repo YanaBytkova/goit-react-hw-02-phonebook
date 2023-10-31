@@ -42,13 +42,15 @@ handleAddProduct = contactData => {
       }));
     };
     
-    setFilter=(value)=>{
-      this.setState({filter: value});
-    }
+    // setFilter=(value)=>{
+    //   this.setState({filter: value});
+    // }
      
-  getFilteredContacts = () => {
-    const filter = this.state.filter;
+  getFilteredContacts = (value) => {
+    // const filter = this.state.filter;
     const contacts = this.state.contacts;
+    const filter = value;
+    console.log(value);
     if (filter) {
       return contacts.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -60,14 +62,14 @@ handleAddProduct = contactData => {
   
   
   render() {
-    const filteredContacts =  this.getFilteredContacts();
+    // const filteredContacts =  this.getFilteredContacts();
     return (
       <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm handleAddProduct={this.handleAddProduct}/>
         <h2>Contacts</h2>
-        <Filtering  filter={this.state.filter} setFilter={this.setFilter} />
-        <ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>
+        <Filtering  filter={this.state.filter} getFilteredContacts={this.getFilteredContacts} />
+        <ContactList contacts={this.getFilteredContacts()} handleDeleteContacts={this.handleDeleteContacts}/>
      </div>
     );
   }

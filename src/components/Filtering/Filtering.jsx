@@ -3,11 +3,15 @@ import React, { Component } from 'react';
 import css from './Filtering.module.css';
 
 export class Filtering extends Component {
-
+  state = {
+    contacts: [],
+    filter: '',
+  }
 handleInputFilter = event => {
     const value = event.target.value;
-    this.props.setFilter(value);
-    // console.log(`Filtering'': ${value}`);
+    this.setState({filter: value});
+    this.props.getFilteredContacts(value);
+   
     
   };
   
@@ -18,7 +22,7 @@ handleInputFilter = event => {
         
         <div>
             <p className={css.labelText}>Find contacts by name</p>
-            <input type="text" value={this.props.filter} required onChange={this.handleInputFilter}/>
+            <input type="text" value={this.state.filter} required onChange={this.handleInputFilter}/>
         </div>
           
        
