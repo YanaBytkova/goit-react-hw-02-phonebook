@@ -46,21 +46,20 @@ handleAddProduct = contactData => {
     //   this.setState({filter: value});
     // }
      
-  getFilteredContacts = (filter) => {
+  getFilteredContacts = (value) => {
  
     const contacts = this.state.contacts;
    
-    if (filter) {
-  
+    if (value) {
+      const filter = value;
       return contacts.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase()))
       
     } 
-    if (filter = 'undefined') {return contacts}
+    return contacts
   }
 
-  
-  
+
   render() {
     
     const filteredContacts =  this.getFilteredContacts();
