@@ -1,32 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import css from './Filtering.module.css';
 
-export class Filtering extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  }
-handleInputFilter = event => {
-    const value = event.target.value;
-    this.setState({filter: value});
-    this.props.getFilteredContacts(value);
-   
-    
-  };
+export const Filtering = ({filter, handleInputFilter}) => {
   
- 
-  render() {
- 
     return (
         
         <div>
             <p className={css.labelText}>Find contacts by name</p>
-            <input type="text" value={this.state.filter} required onChange={this.handleInputFilter}/>
+            <input type="text" value={filter}  onChange={handleInputFilter}/>
         </div>
           
        
     );
-  }
 
 }

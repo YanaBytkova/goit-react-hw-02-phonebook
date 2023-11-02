@@ -42,9 +42,6 @@ handleAddProduct = contactData => {
       }));
     };
     
-    // setFilter=(value)=>{
-    //   this.setState({filter: value});
-    // }
      
   getFilteredContacts = (value) => {
  
@@ -59,16 +56,21 @@ handleAddProduct = contactData => {
     return contacts
   }
 
-
+  handleInputFilter = event => {
+    const value = event.target.value;
+    
+    this.setState({filter: value});
+    
+  };
   render() {
     
-    const filteredContacts =  this.getFilteredContacts();
+    const filteredContacts =  this.getFilteredContacts(this.state.filter);
     return (
       <div className={css.container}>
         <h1>Phonebook</h1>
         <ContactForm handleAddProduct={this.handleAddProduct}/>
         <h2>Contacts</h2>
-        <Filtering getFilteredContacts={this.getFilteredContacts} />
+        <Filtering filter={this.state.filter} handleInputFilter={this.handleInputFilter}/>
         <ContactList contacts={filteredContacts} handleDeleteContacts={this.handleDeleteContacts}/>
      </div>
     );
